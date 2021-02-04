@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="" app:showAsAction="ifRoom" android:icon="@mipmap/conditions">
+        <menu>
+            <item
+                android:id="@+id/my_current_location"
+                android:icon="@mipmap/smile"
+                android:title="@string/my_current_location"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/user_real_time_location"
+                android:icon="@mipmap/cecurity_protection"
+                android:title="@string/user_real_time_location"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/uer_last_location"
+                android:icon="@mipmap/play_fill"
+                android:title="@string/uer_last_location"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/user_historical_location"
+                android:icon="@mipmap/history"
+                android:title="@string/user_historical_location"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/select_user"
+                android:icon="@mipmap/editor"
+                android:title="@string/select_user"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/set"
+                android:icon="@mipmap/set"
+                android:title="@string/settings"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

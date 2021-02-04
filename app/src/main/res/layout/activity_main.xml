@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color666"
+        app:menu="@menu/toolbar_menu"
+        app:popupTheme="@style/Theme.LocationDisplay.PopupOverlay" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/location_errInfo_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/red"
+            android:text="TextView"
+            android:textColor="@color/darkgrey"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
+            android:id="@+id/gps_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints">
+
+            <RadioButton
+                android:id="@+id/gps_show_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="展示"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_locate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gpslocate"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_follow_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gpsfollow"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_rotate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gpsrotate"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_rotate_location_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="旋转位置"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_follow_button_nocenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="跟随不移动中心点"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_rotate_button_nocenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="旋转不移动到中心点"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/gps_rotate_location_button_nocenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="旋转位置不移动到中心点"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
