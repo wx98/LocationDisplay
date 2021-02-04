@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -384,8 +386,8 @@ public final class MainActivity extends AppCompatActivity implements AMap.OnMyLo
         aMap.addPolyline(new PolylineOptions().addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
         //showCameraLocation(ylatitude, ylongitude);
 
-        addMarkersToMap(new LatLng(data.get(0).get(0), data.get(0).get(1)),"开始","开始详细信息");
-        addMarkersToMap(new LatLng(data.get(data.size() - 2).get(0), data.get(data.size() - 2).get(1)),"结束","结束详细信息");
+        addMarkersToMap(new LatLng(data.get(0).get(0), data.get(0).get(1)), "开始", "开始详细信息", Constants.MARKER_AZURE);
+        addMarkersToMap(new LatLng(data.get(data.size() - 2).get(0), data.get(data.size() - 2).get(1)), "结束", "结束详细信息", Constants.MARKER_RED);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(new LatLng(data.get(0).get(0), data.get(0).get(1)));
@@ -397,22 +399,66 @@ public final class MainActivity extends AppCompatActivity implements AMap.OnMyLo
     /**
      * 在地图上添加marker
      */
-    private void addMarkersToMap(LatLng latLng,String title ,String snippet) {
+    private void addMarkersToMap(LatLng latLng, String title, String snippet, int colos) {
         aMap.addMarker(
-                new MarkerOptions().title(title)
-                        .snippet(snippet).icon(BitmapDescriptorFactory .fromView(getBitmapView(this.getApplicationContext(),title,snippet)))
+                new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromView(
+                                getBitmapView(this.getApplicationContext(), title, snippet, colos)//获得自定义图标
+                                )
+                        )
                         .position(latLng)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
         ).showInfoWindow();
     }
-    public static View getBitmapView(Context context,String title ,String snippet)
-    {
+
+    /**
+     * 自定义marker样式
+     *
+     * @param context
+     * @param title
+     * @param snippet
+     * @return
+     */
+    public static View getBitmapView(Context context, String title, String snippet, int colos) {
         LayoutInflater factory = LayoutInflater.from(context);
         View view = factory.inflate(R.layout.mark_info, null);
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
         TextView tv_snippet = (TextView) view.findViewById(R.id.tv_snippet);
+        ImageView img_mark = (ImageView) view.findViewById(R.id.imageView);
+
         tv_title.setText(title);
         tv_snippet.setText(snippet);
+        switch (colos) {
+            case Constants.MARKER_RED:
+                img_mark.setImageResource(R.mipmap.marker_red);
+                break;
+            case Constants.MARKER_ORANGE:
+                img_mark.setImageResource(R.mipmap.marker_orange);
+                break;
+            case Constants.MARKER_YELLOW:
+                img_mark.setImageResource(R.mipmap.marker_yellow);
+                break;
+            case Constants.MARKER_GREEN:
+                img_mark.setImageResource(R.mipmap.marker_green);
+                break;
+            case Constants.MARKER_CYAN:
+                img_mark.setImageResource(R.mipmap.marker_cyan);
+                break;
+            case Constants.MARKER_BLUE:
+                img_mark.setImageResource(R.mipmap.marker_blue);
+                break;
+            case Constants.MARKER_VIOLET:
+                img_mark.setImageResource(R.mipmap.marker_violet);
+                break;
+            case Constants.MARKER_MAGENTA:
+                img_mark.setImageResource(R.mipmap.marker_magenta);
+                break;
+            case Constants.MARKER_ROSE:
+                img_mark.setImageResource(R.mipmap.marker_rose);
+                break;
+            default:
+                img_mark.setImageResource(R.mipmap.marker_azure);
+                break;
+        }
         return view;
     }
     /*********************************************************************************************/
